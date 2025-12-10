@@ -145,4 +145,131 @@ Updates weights using gradient descent (Adam, SGD).
 **MLP is the simplest deep neural network made of layers of perceptrons, used mainly for tabular numerical data, not images or text.**
 
 ---
+Alright Jagan, let’s explain **how to calculate the total number of trainable parameters in any neural network model** in the **simplest possible way**, step by step, so it makes perfect sense.
+
+---
+
+# **1. What are Trainable Parameters?**
+
+Trainable parameters are the **weights and biases** that the network **learns during training**.
+
+* **Weights**: Control the strength of connections between neurons
+* **Biases**: Shift the output of neurons
+
+**Total trainable parameters = Total weights + Total biases**
+
+---
+
+# **2. Step-by-Step Rules to Count Trainable Parameters**
+
+### **Rule 1: Weights**
+
+For every layer connection:
+
+[
+\text{Number of weights} = (\text{Number of neurons in previous layer}) \times (\text{Number of neurons in next layer})
+]
+
+### **Rule 2: Biases**
+
+Each neuron in the next layer has **1 bias**:
+
+[
+\text{Number of biases} = \text{Number of neurons in next layer}
+]
+
+### **Rule 3: Total Trainable Parameters**
+
+[
+\text{Total trainable parameters} = \text{Weights} + \text{Biases for all layers}
+]
+
+---
+
+# **3. Example 1 — Simple ANN**
+
+Network:
+
+* Input layer = 3 neurons
+* Hidden layer = 4 neurons
+* Output layer = 1 neuron
+
+### **Step 1 — Input → Hidden**
+
+* Weights = 3 × 4 = 12
+* Biases = 4
+
+### **Step 2 — Hidden → Output**
+
+* Weights = 4 × 1 = 4
+* Biases = 1
+
+### **Step 3 — Total**
+
+* Total weights = 12 + 4 = 16
+* Total biases = 4 + 1 = 5
+* **Total trainable parameters = 16 + 5 = 21**
+
+---
+
+# **4. Example 2 — Multi-Layer Perceptron (More Layers)**
+
+Network:
+
+* Input layer = 5 neurons
+* Hidden1 = 6 neurons
+* Hidden2 = 4 neurons
+* Output = 3 neurons
+
+### **Step 1 — Input → Hidden1**
+
+* Weights = 5 × 6 = 30
+* Biases = 6
+
+### **Step 2 — Hidden1 → Hidden2**
+
+* Weights = 6 × 4 = 24
+* Biases = 4
+
+### **Step 3 — Hidden2 → Output**
+
+* Weights = 4 × 3 = 12
+* Biases = 3
+
+### **Step 4 — Total**
+
+* Total weights = 30 + 24 + 12 = 66
+* Total biases = 6 + 4 + 3 = 13
+* **Total trainable parameters = 66 + 13 = 79**
+
+---
+
+# **5. Memory Trick to Calculate Quickly**
+
+1. Count neurons in **each layer**
+2. Multiply neurons in **current layer × next layer** → weights
+3. Count neurons in **next layer** → biases
+4. Add all weights and biases → total trainable parameters
+
+---
+
+# **6. Special Note for CNN / RNN**
+
+* **CNN**: Trainable parameters = `(kernel_height × kernel_width × input_channels × output_channels) + output_channels (bias)`
+* **RNN/LSTM**: Includes **input weights + recurrent weights + biases**
+* Modern deep learning frameworks like **TensorFlow / PyTorch** can show `model.summary()` to list all trainable parameters automatically.
+
+---
+
+# **7. Summary**
+
+* **Trainable parameters = Weights + Biases**
+* **Weights = neurons_prev × neurons_next**
+* **Biases = neurons_next**
+* Add for **all layers** → total trainable parameters
+
+---
+
+
+
 
