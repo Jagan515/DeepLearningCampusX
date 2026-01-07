@@ -163,11 +163,3 @@ Nesterov Accelerated Gradient improves momentum by looking ahead before updating
 
 ---
 
-If you want next:
-
-* **SGD vs Momentum vs NAG vs Adam**
-* **Adam optimizer in detail**
-* **Numerical comparison question**
-* **MCQs for exams**
-
-Just say 👍
